@@ -10,7 +10,7 @@ public:
     int getSize();
     int getLoopOffset();
     void incrementLoopOffset();
-    int calculateCircularIndex(); //used when index >= size
+    int calculateCircularIndex(int index); //used when index >= size
 
 private:
     int size; //length of array
