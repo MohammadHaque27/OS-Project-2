@@ -10,8 +10,9 @@ using namespace std;
 void FIFO(int array, int number_of_frames){
     //initialize read counts
     int readCount = 0;
-    int writeCount = 0; 
     //initialize write counts 
+    int writeCount = 0; 
+
 
     //loop to read each address from the trace file 
         //check if address in the page table 
