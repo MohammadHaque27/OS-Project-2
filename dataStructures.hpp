@@ -1,3 +1,6 @@
+#ifndef D_STRUCTS
+#define D_STRUCTS
+
 #include <cstdlib>
 
 class CircularArray 
@@ -13,3 +16,5 @@ private:
     int size; //length of array
     int loopOffset; // for loopOffset % size
 }
+
+#endif // D_STRUCTS
