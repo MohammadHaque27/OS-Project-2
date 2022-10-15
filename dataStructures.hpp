@@ -12,4 +12,4 @@ public:
 private:
     int size; //length of array
     int loopOffset; // for loopOffset % size
-}
+};
