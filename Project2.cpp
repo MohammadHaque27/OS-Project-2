@@ -6,10 +6,10 @@
 using namespace std;
 
 //Function for FIFO Algorithm 
-
+void FIFO
 
 
 //Function for LRU Algorithm 
-void FIFO
+
 
 //Function for Segmented FIFO Algorithm 
