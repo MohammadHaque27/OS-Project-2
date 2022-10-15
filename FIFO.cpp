@@ -8,7 +8,9 @@ using namespace std;
 
 //Function for FIFO Algorithm 
 void FIFO(int array, int number_of_frames){
-    //initialize read counts 
+    //initialize read counts
+    int readCount = 0;
+    int writeCount = 0; 
     //initialize write counts 
 
     //loop to read each address from the trace file 
