@@ -28,6 +28,7 @@ The program can be run with two types of input format
 ./memsim tracefile nframes policy percentage quiet/debug 
  
 __________Running Examples________________ 
+
 ./memsim bzip.trace 64 fifo quiet 
 total memory frames: 64 
 events in trace: 1000000 
