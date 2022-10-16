@@ -2,7 +2,7 @@
 
 CircularArray::CircularArray(int length)
 {
-    std::string *array = (std::string*) malloc(length);
+    array = (unsigned*) malloc(length);
     size = length;
     loopOffset = 0;
 }
