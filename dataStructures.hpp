@@ -19,4 +19,14 @@ private:
     int loopOffset; // for loopOffset % size
 };
 
+
+class LRUQueue
+{
+public:
+    LRUQueue();
+    
+private:
+
+};
+
 #endif // D_STRUCTS
