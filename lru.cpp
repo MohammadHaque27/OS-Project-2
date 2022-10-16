@@ -1,6 +1,6 @@
 
-#include policies.hpp
-#include dataStructures.cpp
+#include "policies.hpp"
+#include "dataStructures.cpp"
 #include<iostream>
 #include<cstdlib>
 #include <string>
@@ -11,9 +11,14 @@
 void lru(int frame_num, std::vector<int> &array_object)
 {
     // if the page is not in LRU and the LRU is full
-    //pop the bottom of the array 
-    //add the new page to the top
+    //pop the front of the array 
+    //add the new page to the back
     int temp = frame_num;
     array_object.erase(array_object.begin());
-    array_object.push_back(temp);
+    for(int i = 0; i=<len(array_object); i++){
+        array_object[i+1] = array_object[i]; // pushes each item 1 position to the left
+
+    }
+    array_object.push_back(temp);// adds the temp to the last postion of the array
+    std:: << cout << array_object;
 }
