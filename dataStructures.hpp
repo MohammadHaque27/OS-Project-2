@@ -2,11 +2,12 @@
 #define D_STRUCTS
 
 #include <cstdlib>
+#include <string>
 
 class CircularArray 
 {
 public:    
-    CircularArray(int size);
+    CircularArray(int length);
     int getSize();
     int getLoopOffset();
     void incrementLoopOffset();
