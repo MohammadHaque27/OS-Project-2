@@ -1,5 +1,6 @@
 //#include <iostream>
 #include <stdio>
+#include <string> //technically already included in a .hpp file
 #include "dataStructures.hpp"
 #include "policies.hpp"
 
@@ -9,9 +10,13 @@ int main(int argc, char* argv[]) //memsim <tracefile> <nframes> <lru|fifo|vms> <
     FILE * tracefile;
     tracefile = fopen(argv[0], "r"); //argv[0] = <tracefile>
     
-    unsigned addr; //Wanwan had type unsigned
-    char rw; //had .. after this 
-    fscanf(tracefile,"%x %c",&addr,&rw);
+    std::string addr; //Wanwan had as type unsigned
+    char rw;
+    while (fscanf(tracefile,"%x %c",&addr,&rw) != 0)
+    {
+        addr.erase(addr.end()-3, addr.end()); //right hex digit shift by 3
+        //loop to compare addr to each page table entry
+    }
 
 
 
