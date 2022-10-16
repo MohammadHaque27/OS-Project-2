@@ -21,7 +21,7 @@ private:
     int loopOffset; // for loopOffset % size
 };
 
-
+//Right now, the stl vector using std::pair<unsigned, char> as elements will suffice as the LRU data structure
 // class LRUQueue
 // {
 // public:
