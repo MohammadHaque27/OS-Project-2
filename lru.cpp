@@ -6,4 +6,10 @@
 #include <vector>
 
 
-void lru()
+void lru(int page_table, int number_of_frames)
+{
+
+
+
+
+}
