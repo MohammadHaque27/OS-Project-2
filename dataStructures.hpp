@@ -14,6 +14,7 @@ public:
     int calculateCircularIndex(); //used when index >= size
 
 private:
+    std::string array[];
     int size; //length of array
     int loopOffset; // for loopOffset % size
 };
