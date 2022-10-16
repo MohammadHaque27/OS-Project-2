@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <string>
+#include <vector>
 
 class CircularArray 
 {
@@ -24,7 +25,7 @@ class LRUQueue
 {
 public:
     LRUQueue();
-    
+
 private:
 
 };
