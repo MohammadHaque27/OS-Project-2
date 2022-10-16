@@ -2,7 +2,7 @@
 
 CircularArray::CircularArray(int length)
 {
-    std::string new array[length] = {nullptr};
+    std::string array[length] = {nullptr};
     size = length;
     loopOffset = 0;
 }
