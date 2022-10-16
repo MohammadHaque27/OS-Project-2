@@ -14,11 +14,7 @@ public:
     int calculateCircularIndex(); //used when index >= size
 
 private:
-<<<<<<< Updated upstream
-    //std::string *array;
-=======
-    std::string *array;
->>>>>>> Stashed changes
+    //std::string *array; //may need to add array as a member somewhere, but also might not want it to be a private member
     int size; //length of array
     int loopOffset; // for loopOffset % size
 };
