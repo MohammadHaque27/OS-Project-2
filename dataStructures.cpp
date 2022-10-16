@@ -3,7 +3,7 @@
 CircularArray::CircularArray(int length)
 {
     array = (unsigned*) malloc(length);
-    size = length -1;
+    size = length;
     loopOffset = 0;
 }
 

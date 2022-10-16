@@ -11,7 +11,7 @@ void VMS(std::string traceName, int nframes, int p) //traceName may need to be (
     //if (size1 == 0)
 
     CircularArray buffer1(size1);
-    //create buffer2
+    std::vector<int> buffer2(size2);
 
     FILE * tracefile;
     tracefile = fopen(traceName, "r");
