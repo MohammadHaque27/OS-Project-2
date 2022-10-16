@@ -1,26 +1,28 @@
 #include "dataStructures.hpp"
 
-CircularArray(int size)
+CircularArray::CircularArray(int length)
 {
-
+    std::string array[length] = {nullptr};
+    size = length;
+    loopOffset = 0;
 }
 
-int getSize()
+int CircularArray::getSize()
 {
     return size;
 }
 
-int getLoopOffset()
+int CircularArray::getLoopOffset()
 {
     return loopOffset;
 }
     
-void incrementLoopOffset()
+void CircularArray::incrementLoopOffset()
 {
-
+    loopOffset++;
 }
 
-int calculateCircularIndex()
+int CircularArray::calculateCircularIndex(int index)
 {
-
+    return loopOffset % size;
 }
