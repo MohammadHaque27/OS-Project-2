@@ -4,20 +4,24 @@
 
 void VMS(std::string traceName, int nframes, int p) //traceName may need to be (const char*)
 {
-    //conditional to just run fifo or lru (figure out percentages)
-    //if (p == 100)
+    int size2 = (nframes * p) / 100;
+    int size1 = nframes - size2;
 
-    CircularArray buffer1(nframes);
+    //conditional to just run fifo or lru (figure out percentages)
+    //if (size1 == 0)
+
+    CircularArray buffer1(size1);
     //create buffer2
 
     FILE * tracefile;
     tracefile = fopen(traceName, "r");
     
     unsigned addr; 
+    unsigned frameNum;
     char rw;
     while (fscanf(tracefile,"%x %c",&addr,&rw) != EOF)
     {
-        addr = addr / 4096; //Extract frame number by removing the 12 offset bits
+        frameNum = addr / 4096; //Extract frame number by removing the 12 offset bits
         //loop to compare addr to each page table entry
     }
 
