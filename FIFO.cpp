@@ -9,11 +9,9 @@ using namespace std;
 
 //Function for FIFO Algorithm 
 void FIFO(CircularArray* pageTable){
-    int offset = *pageTable.getLoopOffset();
+    int offset = pageTable.getLoopOffset();
     int size = pageTable.getSize();
     int position = offset % size;
 
     
 }
-
-
