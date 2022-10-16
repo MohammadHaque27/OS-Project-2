@@ -26,3 +26,4 @@ int CircularArray::calculateCircularIndex()
 {
     return loopOffset % size;
 }
+
