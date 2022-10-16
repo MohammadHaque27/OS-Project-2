@@ -3,9 +3,9 @@
 #include "policies.hpp"
 
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[]) //memsim <tracefile> <nframes> <lru|fifo|vms> <p> <debug|quiet> 
 {
-    
+
     return 0;
 }
 
