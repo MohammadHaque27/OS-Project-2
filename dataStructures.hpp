@@ -12,7 +12,7 @@ public:
     int getLoopOffset();
     void incrementLoopOffset();
     int calculateCircularIndex(); //used when index >= size
-    std::string array; //may need to add array as a member somewhere, but also might not want it to be a private member
+    std::string *array; //may need to add array as a member somewhere, but also might not want it to be a private member
 
 private:
     int size; //length of array

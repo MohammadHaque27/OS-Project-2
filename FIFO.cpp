@@ -7,7 +7,7 @@
 
 
 //Function for FIFO Algorithm 
-void FIFO(CircularArray &pageTable){
+void FIFO(CircularArray &pageTable, std::string frameNum){
     int offset = pageTable.getLoopOffset();
     int size = pageTable.getSize();
     int position = pageTable.calculateCircularIndex();
@@ -15,8 +15,9 @@ void FIFO(CircularArray &pageTable){
     // pageTable.incrementLoopOffset();
     // std::cout<< pageTable.getLoopOffset() << " ";
     int replacementIndex = pageTable.calculateCircularIndex();
-    pageTable[replacementIndex] = input;
-    
+    std::cout << frameNum.c_str() << std::endl;
+    pageTable.array[replacementIndex] = "Testing";
+    std::cout<< pageTable.array[replacementIndex] << " ";
 
     //std::cout << size << std::endl;
     
@@ -25,7 +26,7 @@ void FIFO(CircularArray &pageTable){
 
 int main(){
     CircularArray pageTable(4);
-    FIFO(pageTable);
+    FIFO(pageTable, "Hello");
     
 
     return 0;
