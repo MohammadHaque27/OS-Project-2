@@ -15,8 +15,9 @@ void FIFO(CircularArray &pageTable, std::string frameNum){
     // pageTable.incrementLoopOffset();
     // std::cout<< pageTable.getLoopOffset() << " ";
     int replacementIndex = pageTable.calculateCircularIndex();
-    std::cout << frameNum.c_str() << std::endl;
-    pageTable.array[replacementIndex] = "Testing";
+    std::cout << replacementIndex << frameNum.c_str() << std::endl;
+    pageTable.*array[replacementIndex] = frameNum;
+    std::cout<< "Successfully added\n";
     std::cout<< pageTable.array[replacementIndex] << " ";
 
     //std::cout << size << std::endl;
