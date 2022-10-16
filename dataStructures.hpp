@@ -21,13 +21,13 @@ private:
 };
 
 
-class LRUQueue
-{
-public:
-    LRUQueue();
+// class LRUQueue
+// {
+// public:
+//     LRUQueue();
 
-private:
+// private:
 
-};
+// };
 
 #endif // D_STRUCTS
