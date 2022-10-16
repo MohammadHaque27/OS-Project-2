@@ -2,13 +2,13 @@
 #include "dataStructures.hpp"
 
 
-void VMS()
+void VMS(std::string traceName, int nframes, int p)
 {
-//use a different class for each page table object based on what the replacement algorithm needs
-    CircularArray pageTable(argv[1]); //argv[1] = <nframes>
+    //use a different class for each page table object based on what the replacement algorithm needs
+    CircularArray pageTable(nframes);
     
     FILE * tracefile;
-    tracefile = fopen(argv[0], "r"); //argv[0] = <tracefile>
+    tracefile = fopen(traceName, "r");
     
     unsigned addr; 
     char rw;
@@ -22,7 +22,5 @@ void VMS()
 
 
 
-    fclose(argv[0]); //argv[0] = <tracefile>
-    
-    return 0;
+    fclose(tracefile);
 }
