@@ -2,8 +2,8 @@
 
 CircularArray::CircularArray(int length)
 {
-    std::string array[length] = {nullptr};
     size = length;
+    std::string array[size] = {nullptr};
     loopOffset = 0;
 }
 
