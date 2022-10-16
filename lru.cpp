@@ -14,6 +14,6 @@ void lru(int frame_num, int *array_object)
     //pop the bottom of the array 
     //add the new page to the top
     int temp = frame_num;
-    *array_object.erase(*array_object.begin);
+    *array_object.erase(*array_object.begin());
     *array_object.push_back(temp);
 }
