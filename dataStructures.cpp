@@ -22,7 +22,7 @@ void CircularArray::incrementLoopOffset()
     loopOffset++;
 }
 
-int CircularArray::calculateCircularIndex(int index)
+int CircularArray::calculateCircularIndex()
 {
     return loopOffset % size;
 }
