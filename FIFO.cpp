@@ -20,7 +20,7 @@ void FIFO(CircularArray &pageTable){
 int main(){
     CircularArray pageTable(4);
     FIFO(pageTable);
-
+    
 
     return 0;
 }
