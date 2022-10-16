@@ -11,7 +11,7 @@ using namespace std;
 void FIFO(CircularArray &pageTable){
     int offset = pageTable.getLoopOffset();
     int size = pageTable.getSize();
-    int position = offset % size;
+    int position = pageTable.calculateCircularIndex();
     std::cout << size << std::endl;
     
 }
