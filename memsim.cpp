@@ -7,6 +7,8 @@
 
 int main(int argc, char* argv[]) //memsim <tracefile> <nframes> <lru|fifo|vms> <p> <debug|quiet> 
 {
+    CircularArray(argv[1]); //argv[1] = <nframes>
+    
     FILE * tracefile;
     tracefile = fopen(argv[0], "r"); //argv[0] = <tracefile>
     
