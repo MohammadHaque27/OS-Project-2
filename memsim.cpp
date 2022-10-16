@@ -7,19 +7,19 @@
 
 int main(int argc, char* argv[]) //memsim <tracefile> <nframes> <lru|fifo|vms> <p> <debug|quiet> 
 {
-    CircularArray(argv[1]); //argv[1] = <nframes>
+    //use a different class for each page table object based on what the replacement algorithm needs
+    CircularArray pageTable(argv[1]); //argv[1] = <nframes>
     
     FILE * tracefile;
     tracefile = fopen(argv[0], "r"); //argv[0] = <tracefile>
     
-    std::string addr; //Wanwan had as type unsigned
+    unsigned addr; 
     char rw;
     while (fscanf(tracefile,"%x %c",&addr,&rw) != 0)
     {
-        addr.erase(addr.end()-3, addr.end()); //right hex digit shift by 3
+        addr = 0x(addr) / 4096; //Extract frame number by removing the 12 offset bits
         //loop to compare addr to each page table entry
     }
-
 
 
 
