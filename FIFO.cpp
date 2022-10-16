@@ -1,29 +1,18 @@
-#include FIFO.hpp
+
 #include<iostream>
 #include<cstdlib>
 #include <string>
 #include <vector>
+#include "dataStructures.hpp"
 
 using namespace std;
 
 //Function for FIFO Algorithm 
-void FIFO(int array, int number_of_frames){
-    //initialize read counts
-    int readCount = 0;
-    //initialize write counts 
-    int writeCount = 0; 
+void FIFO(CircularArray* pageTable){
+    int offset = *pageTable.getLoopOffset();
+    int size = pageTable.getSize();
+    int position = offset % size;
 
-
-    //loop to read each address from the trace file 
-        //check if address in the page table 
-        //if yes update the write file
-
-        //if no
-            //check if the table is full
-                //if no
-                //add address increment read count
-                //if yes 
-                //replacement policy
     
 }
 
