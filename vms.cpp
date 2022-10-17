@@ -96,7 +96,7 @@ void VMS(const char* traceName, int nframes, int p)
                     }
                     else //Not in LRU Table and LRU Table is full
                     {
-                        //add code here
+                        //add code here for adding to buffer1, moving replacement index from buffer 1 to buffer 2, and removing least recently used element from buffer 2.
                         break;
                     }
                 }
