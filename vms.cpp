@@ -50,10 +50,9 @@ void VMS(const char* traceName, int nframes, int p)
             }
             else //needs to be added to the table
             {
-                //std::cout << i << " ";
-                int replacementIndex = pageTable.calculateCircularIndex();
-                pageTable.array[replacementIndex] = frameNum;
-                pageTable.incrementLoopOffset();
+                // int replacementIndex = pageTable.calculateCircularIndex();
+                // pageTable.array[replacementIndex] = frameNum;
+                // pageTable.incrementLoopOffset();
                 break;
             }
         }
