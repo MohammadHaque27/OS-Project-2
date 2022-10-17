@@ -2,7 +2,7 @@
 #include "dataStructures.hpp"
 
 
-void VMS(std::string traceName, int nframes, int p) //traceName may need to be (const char*)
+void VMS(const char* traceName, int nframes, int p)
 {
     int size2 = (nframes * p) / 100;
     int size1 = nframes - size2;
@@ -32,17 +32,20 @@ void VMS(std::string traceName, int nframes, int p) //traceName may need to be (
             if (frameNum == buffer1.array[i].first)
             {
                 bufferHits++;
-                if ((buffer1.array[i].second != "W") && (rw == "W"))
+                if ((buffer1.array[i].second != 'W') && (rw == 'W'))
                 {
                     buffer1.array[i].second = rw;
                 }
+                if (rw == 'R')
+                {
+                    diskReads++;
+                }
                 break;
             }
-            //STOP
-            //continue here:
-            else if (buffer1.array[i] == 0)//Check if page table is empty
+            else if (buffer1.array[i].first == 0)//Check if page table index is empty
             {
-                buffer1.array[i] = frameNum;
+                buffer1.array[i].first = frameNum;
+                buffer1.array[i].second = rw;
                 break;
             }
             else //needs to be added to the table
