@@ -27,9 +27,13 @@ void FIFO(int nframes, const char* traceName){
         //loop to compare addr to each page table entry
         for (int i = 0; i < pageTable.getSize(); i++) {
             isFrame = "No";
-            if (frameNum == pageTable.array[i])
+            if (frameNum == pageTable.array[i].first)
             {
                 hits++;
+                if ((pageTable.array[i].second != "W") && (rw == "W"))
+                {
+                    pageTable.array[i].second = rw;
+                }
                 isFrame = "Frame same as entry";
                 break;
             }
