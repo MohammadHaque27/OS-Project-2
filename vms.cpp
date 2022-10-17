@@ -80,7 +80,7 @@ void VMS(const char* traceName, int nframes, int p)
                         buffer2.erase(buffer2.begin()+j);
                         break;
                     }
-                    else if (buffer2[j].first = 0) //If entry at LRU index is empty
+                    else if (buffer2[j].first = 0) //If entry not in LRU and at LRU index is empty
                     {
                         buffer2[j].first = frameNum;
                         buffer2[j].second = rw;
@@ -88,6 +88,15 @@ void VMS(const char* traceName, int nframes, int p)
                         {
                             diskReads++;
                         }
+                        break;
+                    }
+                    else if (j < (size2-1)) //LRU table not full
+                    {
+                        continue;
+                    }
+                    else //Not in LRU Table and LRU Table is full
+                    {
+                        //add code here
                         break;
                     }
                 }
