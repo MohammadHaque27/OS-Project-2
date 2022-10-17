@@ -92,6 +92,9 @@ void VMS(const char* traceName, int nframes, int p)
                     }
                 }
 
+                // int replacementIndex = pageTable.calculateCircularIndex();
+                // pageTable.array[replacementIndex] = frameNum;
+                // pageTable.incrementLoopOffset();
                 break;
             }
         }
