@@ -33,6 +33,10 @@ void FIFO(int nframes, const char* traceName){
                 {
                     pageTable.array[i].second = rw;
                 }
+                if (rw == 'R')
+                {
+                    reads++;
+                }
                 std::cout<<"Frame is in page table\n";
                 break;
             }
@@ -50,6 +54,15 @@ void FIFO(int nframes, const char* traceName){
                 int replacementIndex = pageTable.calculateCircularIndex();
                 pageTable.array[replacementIndex].first = frameNum;
                 pageTable.incrementLoopOffset();
+                if (buffer1.array[replacementIndex].second == 'W')
+                {
+                    diskWrites++;
+                }
+                buffer1.array[replacementIndex].second = rw;
+                if (rw == 'R')
+                {
+                    diskReads++;
+                }
             }
 
 
