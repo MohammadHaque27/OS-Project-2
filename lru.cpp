@@ -1,27 +1,30 @@
-
 #include "policies.hpp"
 #include "dataStructures.cpp"
 #include <iostream>
 #include <map>
-#include <cstdlib>
+#include <algorithm>
 #include <string.h>
 #include <vector>
 #include <stdlib.h>
-
+#include <queue>
+using namespace std;
 
 //Function for the LRU Algorithm
-void lru(const char* tracefile , int frame_Num, string option)
-{
-    
-    //use a different class for each page table object based on what the replacement algorithm needs
-    LRUQueue pageTable(nframes);
-    vector<int> It;
-    vector<int> Pg_Table;
-    map<int, char> = mem;
+// if the page is not in LRU and the LRU is full
+//pop the front of the array 
+//add the new page to the back
 
-    unsigned int changes; // any changes in our event
-    unsigned int read;
-    unsigned int write;
+void lru(const char* traceName , int frame_Num, string option)
+{
+    //use a different class for each page table object based on what the replacement algorithm needs
+    //LRUQueue pageTable(nframes);
+    vector<int>::iterator It;
+    vector<int> Pg_table;
+    map<int, char> mem;
+
+    unsigned int changes; //any changes in our event
+    unsigned int Disk_reads;
+    unsigned int Disk_writes;
     
     FILE * tracefile;
     tracefile = fopen(traceName, "r");
@@ -29,32 +32,32 @@ void lru(const char* tracefile , int frame_Num, string option)
     unsigned addr;
     unsigned trace = 0; 
     char rw = ' ';
-    while (fscanf(tracefile,"%x %c",&addr,&rw) != EOF)  //This the first loop
+    while (fscanf(tracefile,"%x %c",&addr,&rw) != EOF)  //This the first loop goes through the file 
     {
-        frameNum = addr / 4096; //Extract frame number by removing the 12 offset bits
+        trace = addr / 4096; //Extract frame number by removing the 12 offset bits
         //loop to compare addr to each page table entry
-        It = find(Pg_table.begin(), Pg_table.end(), trace); //finding the fameNum in the pg table 
+        It = find(Pg_table.begin(), Pg_table.end(), trace); //finding the trace in the pg table 
         //check if address in page table 
-            if(It == Pg_table.end())// loop for page misses
+            if(It == Pg_table.end())// code to get page misses
             {
+                if(strcmp(option.c_str(), "quiet"))
+                {
+                    cout << "Miss" << endl; //print out miss
+                }
+
+                Disk_reads++;
+                
                 if(mem.size() < frame_Num)
                 {
                     Pg_table.push_back(trace);
                     mem[trace] = rw;
                 }
 
-                if(strcmp(option.c_str(), "debug"))
-                {
-                    cout << "Miss" << endl //print out miss
-                }
-
-                read++;
-
-                else
+                else 
                 {
                     if(mem[Pg_table.front()] == 'W')
                     {
-                        write++;
+                        Disk_writes++;
                     }
 
                     mem.erase(Pg_table.front());
@@ -67,39 +70,42 @@ void lru(const char* tracefile , int frame_Num, string option)
                 }
 
             }
+
             else
             {
-                if(strcmp(option.c_str(), "debug"))
+                if(strcmp(option.c_str(), "quiet"))
                 {
-                    cout << "Hit" << endl  //print out hit
+                    cout << "Hit" << endl;  //print out hit
                 }
 
                 Pg_table.erase(It);
                 Pg_table.push_back(trace);
 
-                if(mem[trace] == "R")
+                if(mem[trace] == 'R')
                 {
                     mem[trace] = rw;
                 }
             } 
-            changes++ //counter for dirty
+            changes++; //counter for dirty
     }
     fclose(tracefile);
 
-    cout << "Total memory frames" << frame_Num << endl;
-    cout << "Events in trace" << changes << endl;
-    cout << "Total disk reads" << read << endl;
-    cout << "Total disk writes" << write << endl;
+    cout << "Total memory frames: " << frame_Num << endl;
+    cout << "Events in trace: " << changes << endl;
+    cout << "Total disk reads: " << Disk_reads << endl;
+    cout << "Total disk writes: " << Disk_writes << endl;
 }
 
 
+int main(){
+    
+    lru("bzip.trace", 64, "quiet");
 
+    return 0;
+}
 
 
 /*
-    // if the page is not in LRU and the LRU is full
-    //pop the front of the array 
-    //add the new page to the back
     int temp = frame_Num;
     array_object.erase(array_object.begin());
     for(int i = 0; i=<len(array_object); i++){
