@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string.h> //technically already included in a .hpp file
-#include "dataStructures.hpp"
+// #include "dataStructures.hpp"
 #include "policies.hpp"
 
 
@@ -17,9 +17,9 @@ int main(int argc, char* argv[]) //memsim <tracefile> <nframes> <lru|fifo|vms> <
     }
 
     if(argc == 5) {
-        if (argv[3] == "lru" || argv[3] == "fifo"){
+        if (strcmp(argv[3], "fifo") == 0 || strcmp(argv[3], "lru") == 0){
             tracefile = argv[1];
-            nframes = std::stoi(argv[2]);
+            nframes = std::atoi(argv[2]);
             algorithm = argv[3];
             debugOrQuiet = argv[4];
         }
@@ -30,11 +30,11 @@ int main(int argc, char* argv[]) //memsim <tracefile> <nframes> <lru|fifo|vms> <
     }
 
     else if (argc == 6) {
-        if (argv[3] == "vms") {
+        if (strcmp(argv[3], "vms") == 0) {
             tracefile = argv[1];
-            nframes = std::stoi(argv[2]);
+            nframes = std::atoi(argv[2]);
             algorithm = argv[3];
-            p = std::stoi(argv[4]);
+            p = std::atoi(argv[4]);
             debugOrQuiet = argv[5];
         }
         else {
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) //memsim <tracefile> <nframes> <lru|fifo|vms> <
     }
 
     if(strcmp(algorithm, "fifo") == 0) {
-        fifo(nframes, tracefile, debugOrQuiet);
+        FIFO(nframes, tracefile, debugOrQuiet);
     }
 
     else if (strcmp(algorithm, "lru") == 0) {
