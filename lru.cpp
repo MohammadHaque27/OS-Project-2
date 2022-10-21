@@ -10,7 +10,7 @@
 using namespace std;
 
 //Function for the LRU Algorithm
-// if the page is not in LRU and the LRU is full
+//if the page is not in LRU and the LRU is full
 //pop the front of the array 
 //add the new page to the back
 
@@ -32,6 +32,8 @@ void lru(const char* traceName , int frame_Num, string option)
     unsigned addr;
     unsigned trace = 0; 
     char rw = ' ';
+    int choice = 0;
+
     while (fscanf(tracefile,"%x %c",&addr,&rw) != EOF)  //This the first loop goes through the file 
     {
         trace = addr / 4096; //Extract frame number by removing the 12 offset bits
@@ -40,7 +42,19 @@ void lru(const char* traceName , int frame_Num, string option)
         //check if address in page table 
             if(It == Pg_table.end())// code to get page misses
             {
-                if(strcmp(option.c_str(), "quiet"))
+               choice = 1;
+            }
+
+            else
+            {
+                choice = 2;
+            } 
+            changes++; //counter for dirty
+
+            switch(choice) 
+            {
+                case 1:
+                  if(strcmp(option.c_str(), "quiet"))
                 {
                     cout << "Miss" << endl; //print out miss
                 }
@@ -68,12 +82,10 @@ void lru(const char* traceName , int frame_Num, string option)
                     Pg_table.push_back(trace);
 
                 }
+                  break;
 
-            }
-
-            else
-            {
-                if(strcmp(option.c_str(), "quiet"))
+                case 2:
+                  if(strcmp(option.c_str(), "quiet"))
                 {
                     cout << "Hit" << endl;  //print out hit
                 }
@@ -85,8 +97,9 @@ void lru(const char* traceName , int frame_Num, string option)
                 {
                     mem[trace] = rw;
                 }
-            } 
-            changes++; //counter for dirty
+                  break;
+            }
+
     }
     fclose(tracefile);
 
