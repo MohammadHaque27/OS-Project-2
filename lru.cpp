@@ -22,9 +22,9 @@ void lru(const char* traceName , int frame_Num, string option)
     vector<int> Pg_table;
     map<int, char> mem;
 
-    unsigned int changes; //any changes in our event
-    unsigned int Disk_reads;
-    unsigned int Disk_writes;
+    unsigned int changes = 0; //any changes in our event
+    unsigned int Disk_reads = 0;
+    unsigned int Disk_writes = 0;
     
     FILE * tracefile;
     tracefile = fopen(traceName, "r");
