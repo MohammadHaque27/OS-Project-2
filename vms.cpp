@@ -27,6 +27,7 @@ void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
     //loop over each memory address in trace file
     while (fscanf(tracefile,"%x %c",&addr,&rw) != EOF)
     {
+        count++;
         frameNum = addr / 4096; //Extract frame number by removing the 12 offset bits
         //loop to compare frameNum to each page table entry
         for (int i = 0; i < size1; i++) 
