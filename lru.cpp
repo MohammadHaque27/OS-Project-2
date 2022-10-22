@@ -37,6 +37,7 @@ void lru(const char* traceName , int frame_Num, std::string option)
     unsigned trace = 0; 
     char rw = ' ';
     int choice = 0;
+    //int Hits = 0;
 
     while (fscanf(tracefile,"%x %c",&addr,&rw) != EOF)  //This the first loop goes through the file 
     {
@@ -91,6 +92,7 @@ void lru(const char* traceName , int frame_Num, std::string option)
                   if(strcmp(option.c_str(), "quiet"))  //if choosen option is 'quiet'
                 {
                     std::cout << "Hit" << std::endl;  //print out hit
+                    //Hits++;
                 }
 
                 Pg_table.erase(It);
@@ -113,12 +115,13 @@ void lru(const char* traceName , int frame_Num, std::string option)
     std::cout << "Events in trace: " << count << std::endl;
     std::cout << "Total disk reads: " << Disk_reads << std::endl;
     std::cout << "Total disk writes: " << Disk_writes << std::endl;
+    
 }
 
 /*
 int main(){
     
-    lru("bzip.trace", 64, "quiet");
+    lru("sixpack.trace", 4, "debug");
 
     return 0;
 }
