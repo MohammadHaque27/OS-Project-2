@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) //memsim <tracefile> <nframes> <lru|fifo|vms> <
     }
 
     else if (strcmp(algorithm, "vms") == 0) {
-        //PLEASE CALL YOUR FUNCTION
+        VMS(tracefile, nframes, p, debugOrQuiet);
     }
 
     else {

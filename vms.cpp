@@ -1,9 +1,8 @@
 #include "policies.hpp"
 #include "dataStructures.hpp" 
-#include "dataStructures.cpp" 
 
 
-void VMS(const char* traceName, int nframes, int p)
+void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
 {
     int size2 = (nframes * p) / 100;
     int size1 = nframes - size2;
@@ -17,6 +16,7 @@ void VMS(const char* traceName, int nframes, int p)
     int bufferHits = 0;
     int diskReads = 0;
     int diskWrites = 0;
+    int count = 0;
 
     FILE * tracefile;
     tracefile = fopen(traceName, "r");
@@ -97,6 +97,23 @@ void VMS(const char* traceName, int nframes, int p)
                     else //Not in LRU Table and LRU Table is full
                     {
                         //add code here for adding to buffer1, moving replacement index from buffer 1 to buffer 2, and removing least recently used element from buffer 2.
+                        int replacementIndex = buffer1.calculateCircularIndex();
+                        if (buffer1.array[replacementIndex].second == 'W')
+                        {
+                            diskWrites++;
+                        }
+                        tempFrame = buffer1.array[replacementIndex].first;
+                        tempRW = buffer1.array[replacementIndex].second;
+                        buffer1.array[replacementIndex].first = frameNum;
+                        buffer1.incrementLoopOffset();
+                        buffer1.array[replacementIndex].second = rw;
+                        if (rw == 'R')
+                        {
+                            diskReads++;
+                        }
+                        buffer2.erase(buffer2.begin()); //erase least recently used (front vector queue element)
+                        std::pair<unsigned, char> elem = <frameNum, rw>;
+                        buffer2.push_back(elem);
                         break;
                     }
                 }
