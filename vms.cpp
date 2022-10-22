@@ -112,7 +112,7 @@ void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
                             diskReads++;
                         }
                         buffer2.erase(buffer2.begin()); //erase least recently used (front vector queue element)
-                        std::pair<unsigned, char> elem = <frameNum, rw>;
+                        std::pair<unsigned, char> elem = <tempFrame, tempRW>;
                         buffer2.push_back(elem);
                         break;
                     }
