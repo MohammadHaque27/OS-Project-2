@@ -81,7 +81,7 @@ void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
                         buffer2.erase(buffer2.begin()+j);
                         break;
                     }
-                    else if (buffer2[j].first = 0) //If entry not in LRU and at LRU index is empty
+                    else if (buffer2[j].first == 0) //If entry not in LRU and at LRU index is empty
                     {
                         buffer2[j].first = frameNum;
                         buffer2[j].second = rw;
@@ -103,8 +103,8 @@ void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
                         {
                             diskWrites++;
                         }
-                        tempFrame = buffer1.array[replacementIndex].first;
-                        tempRW = buffer1.array[replacementIndex].second;
+                        unsigned tempFrame = buffer1.array[replacementIndex].first;
+                        char tempRW = buffer1.array[replacementIndex].second;
                         buffer1.array[replacementIndex].first = frameNum;
                         buffer1.incrementLoopOffset();
                         buffer1.array[replacementIndex].second = rw;
