@@ -7,26 +7,30 @@
 #include <vector>
 #include <stdlib.h>
 #include <queue>
-using namespace std;
 
 //Function for the LRU Algorithm
 //if the page is not in LRU and the LRU is full
 //pop the front of the array 
 //add the new page to the back
 
-void lru(const char* traceName , int frame_Num, string option)
+void lru(const char* traceName , int frame_Num, std::string option)
 {
-    //use a different class for each page table object based on what the replacement algorithm needs
-    //LRUQueue pageTable(nframes);
-    vector<int>::iterator It;
-    vector<int> Pg_table;
-    map<int, char> mem;
 
-    unsigned int changes = 0; //any changes in our event
-    unsigned int Disk_reads = 0;
+    //any changes in our event
+    unsigned int changes = 0; 
+    // disk reads
+    unsigned int Disk_reads = 0; 
+    // disk writes   
     unsigned int Disk_writes = 0;
+
+    //use a different class for each page table object based on what the replacement algorithm needs
+    std::vector<int>::iterator It;
+    std::vector<int> Pg_table;
+    std::map<int, char> mem;
     
+    //opening the tracefile that we are reading from
     FILE * tracefile;
+    
     tracefile = fopen(traceName, "r");
     
     unsigned addr;
@@ -39,27 +43,27 @@ void lru(const char* traceName , int frame_Num, string option)
         trace = addr / 4096; //Extract frame number by removing the 12 offset bits
         //loop to compare addr to each page table entry
         It = find(Pg_table.begin(), Pg_table.end(), trace); //finding the trace in the pg table 
-        //check if address in page table 
+        
             if(It == Pg_table.end())// code to get page misses
             {
-               choice = 1;
+               choice = 1;  
             }
 
-            else
+            else  // code to get hits
             {
                 choice = 2;
             } 
-            changes++; //counter for dirty
+            changes++; 
 
             switch(choice) 
             {
                 case 1:
-                  if(strcmp(option.c_str(), "quiet"))
+                  if(strcmp(option.c_str(), "quiet")) //if choosen option is 'quiet'
                 {
-                    cout << "Miss" << endl; //print out miss
+                    std::cout << "Miss" << std::endl; //print out miss
                 }
 
-                Disk_reads++;
+                Disk_reads++;  //increment read
                 
                 if(mem.size() < frame_Num)
                 {
@@ -69,31 +73,32 @@ void lru(const char* traceName , int frame_Num, string option)
 
                 else 
                 {
-                    if(mem[Pg_table.front()] == 'W')
+                    if(mem[Pg_table.front()] != 'R')  //if 'W'
                     {
-                        Disk_writes++;
+                        Disk_writes++;  // increment write
                     }
 
                     mem.erase(Pg_table.front());
-                    Pg_table.erase(Pg_table.begin());
-
-
                     mem[trace] = rw;
-                    Pg_table.push_back(trace);
+                    Pg_table.erase(Pg_table.begin());
+                    // push trace into page table from back
+                    Pg_table.push_back(trace);   
 
                 }
                   break;
 
                 case 2:
-                  if(strcmp(option.c_str(), "quiet"))
+                  if(strcmp(option.c_str(), "quiet"))  //if choosen option is 'quiet'
                 {
-                    cout << "Hit" << endl;  //print out hit
+                    std::cout << "Hit" << std::endl;  //print out hit
                 }
 
                 Pg_table.erase(It);
+
+                // push trace into page table from back
                 Pg_table.push_back(trace);
 
-                if(mem[trace] == 'R')
+                if(mem[trace] != 'W')   
                 {
                     mem[trace] = rw;
                 }
@@ -101,12 +106,13 @@ void lru(const char* traceName , int frame_Num, string option)
             }
 
     }
-    fclose(tracefile);
+    fclose(tracefile);   //close trace file 
 
-    cout << "Total memory frames: " << frame_Num << endl;
-    cout << "Events in trace: " << changes << endl;
-    cout << "Total disk reads: " << Disk_reads << endl;
-    cout << "Total disk writes: " << Disk_writes << endl;
+    //output for lru
+    std::cout << "Total memory frames: " << frame_Num << std::endl;
+    std::cout << "Events in trace: " << changes << std::endl;
+    std::cout << "Total disk reads: " << Disk_reads << std::endl;
+    std::cout << "Total disk writes: " << Disk_writes << std::endl;
 }
 
 
@@ -116,15 +122,3 @@ int main(){
 
     return 0;
 }
-
-
-/*
-    int temp = frame_Num;
-    array_object.erase(array_object.begin());
-    for(int i = 0; i=<len(array_object); i++){
-        array_object[i+1] = array_object[i]; // pushes each item 1 position to the left
-
-    }
-    array_object.push_back(temp);// adds the temp to the last postion of the array
-    std:: << cout << array_object;
-    */
