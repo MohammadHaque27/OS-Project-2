@@ -16,8 +16,8 @@
 void lru(const char* traceName , int frame_Num, std::string option)
 {
 
-    //any changes in our event
-    unsigned int changes = 0; 
+    
+    unsigned int count = 0; 
     // disk reads
     unsigned int Disk_reads = 0; 
     // disk writes   
@@ -53,7 +53,7 @@ void lru(const char* traceName , int frame_Num, std::string option)
             {
                 choice = 2;
             } 
-            changes++; 
+            count++; 
 
             switch(choice) 
             {
@@ -110,15 +110,16 @@ void lru(const char* traceName , int frame_Num, std::string option)
 
     //output for lru
     std::cout << "Total memory frames: " << frame_Num << std::endl;
-    std::cout << "Events in trace: " << changes << std::endl;
+    std::cout << "Events in trace: " << count << std::endl;
     std::cout << "Total disk reads: " << Disk_reads << std::endl;
     std::cout << "Total disk writes: " << Disk_writes << std::endl;
 }
 
-
+/*
 int main(){
     
     lru("bzip.trace", 64, "quiet");
 
     return 0;
 }
+*/
