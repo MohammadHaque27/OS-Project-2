@@ -16,7 +16,7 @@ policies. Also, make sure to include any trace file to be tested in the same dir
  
 To compile the program: 
 1. You can use command "make" and it will compile all the files for you which creates memsim executable. 
-2.  alternatively,  you  can  also  try  "gcc  -o  memsim  memsim.c  fifo.c  lru.c  vms.c  dataStructures.c",  to  compile  the 
+2.  alternatively,  you  can  also  try  "g++ -std=c++17  -o  memsim  memsim.c  fifo.c  lru.c  vms.c  dataStructures.c",  to  compile  the 
 program. 
  
 To run the program: 
