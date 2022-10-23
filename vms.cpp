@@ -8,7 +8,15 @@ void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
     int size1 = nframes - size2;
 
     //conditional to just run fifo or lru (figure out percentages)
-    //if (size1 == 0)
+    if (size1 == 0)
+    {
+        lru(traceName, nframes, debugOrQuiet);
+    }
+
+    if (size2 == 0)
+    {
+        FIFO(nframes, traceName, debugOrQuiet);
+    }
 
     CircularArray buffer1(size1);
     std::vector<std::pair<unsigned, char> > buffer2;
