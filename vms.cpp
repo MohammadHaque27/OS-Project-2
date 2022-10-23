@@ -160,11 +160,15 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                                 std::cout<< count <<": Disk Write" << std::endl;
                             }
                         }
+                        if(strcmp(debugOrQuiet, "debug") == 0){
+                            std::cout << "Removing" << buffer2.begin()->first << std::endl;
+                        }
                         buffer2.erase(buffer2.begin()); //erase least recently used (front vector queue element)
                         std::pair<unsigned, char> elem;
                         elem.first = tempFrame;
                         elem.second = tempRW;
                         buffer2.push_back(elem);
+                        std::cout << "buffer2 elem 0: " << buffer2.begin()->first << "\nbuffer2 elem 1: " << (buffer2.begin()+1)->first << std:endl;
                         break;
                     }
                 }
@@ -184,6 +188,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
     std::cout << "Total disk reads: " << diskReads << std::endl;
     std::cout << "Total disk writes: " << diskWrites << std::endl;
 
-
+    std::count << "Test before fclose" << std::endl;
     fclose(tracefile);
+    std::count << "Test after fclose" << std::endl;
 }
