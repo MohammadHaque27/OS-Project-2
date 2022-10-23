@@ -43,7 +43,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
             if (frameNum == buffer1.array[i].first) //If entry is in FIFO table
             {
                 if(strcmp(debugOrQuiet, "debug") == 0){
-                    std::cout<<"Buffer1 entry " << i << " is a match" << std::endl;
+                    std::cout<< count <<": Buffer1 entry " << i << " is a match" << std::endl;
                 }
                 //bufferHits++;
                 if ((buffer1.array[i].second != 'W') && (rw == 'W'))
@@ -59,13 +59,16 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
             else if (buffer1.array[i].first == 0)//If entry not in FIFO table but FIFO table entry is empty
             {
                 if(strcmp(debugOrQuiet, "debug") == 0){
-                    std::cout<<"Buffer1 entry " << i << " is empty, adding frame to the table" << std::endl;
+                    std::cout<< count <<": Buffer1 entry " << i << " is empty, adding frame to the table" << std::endl;
                 }
                 buffer1.array[i].first = frameNum;
                 buffer1.array[i].second = rw;
                 if (rw == 'R')
                 {
                     diskReads++;
+                    if(strcmp(debugOrQuiet, "debug") == 0){
+                        std::cout<< count <<": Disk Read" << std::endl;
+                    }
                 }
                 break;
             }
@@ -77,14 +80,14 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
             {
                 //...loop through LRU table
                 if(strcmp(debugOrQuiet, "debug") == 0){
-                    std::cout<<"Buffer1 is full with no matches, begin searching buffer2" << std::endl;
+                    std::cout<< count <<": Buffer1 is full with no matches, begin searching buffer2" << std::endl;
                 }
                 for (int j = 0; j < size2; j++)
                 {
                     if (frameNum == buffer2[j].first) //If entry is in LRU table
                     {
                         if(strcmp(debugOrQuiet, "debug") == 0){
-                            std::cout<<"Buffer2 entry " << j << " is a match, moving this entry to buffer1" << std::endl;
+                            std::cout<< count <<": Buffer2 entry " << j << " is a match, moving this entry to buffer1" << std::endl;
                         }
                         int replacementIndex = buffer1.calculateCircularIndex();
                         // if (buffer1.array[replacementIndex].second == 'W')
@@ -110,13 +113,16 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                     else if (buffer2[j].first == 0) //If entry not in LRU and at LRU index is empty
                     {
                         if(strcmp(debugOrQuiet, "debug") == 0){
-                            std::cout<<"Buffer2 entry " << j << " is empty, adding frame to the table" << std::endl;
+                            std::cout<< count <<": Buffer2 entry " << j << " is empty, adding frame to the table" << std::endl;
                         }
                         buffer2[j].first = frameNum;
                         buffer2[j].second = rw;
                         if (rw == 'R')
                         {
                             diskReads++;
+                            if(strcmp(debugOrQuiet, "debug") == 0){
+                                std::cout<< count <<": Disk Read" << std::endl;
+                            }
                         }
                         break;
                     }
@@ -128,7 +134,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                     {
                         //add code here for adding to buffer1, moving replacement index from buffer 1 to buffer 2, and removing least recently used element from buffer 2.
                         if(strcmp(debugOrQuiet, "debug") == 0){
-                            std::cout<<"Buffer2 is full with no matches, adding frame to buffer1 and shifting buffer1 replacement to buffer2" << std::endl;
+                            std::cout<< count <<": Buffer2 is full with no matches, adding frame to buffer1 and shifting buffer1 replacement to buffer2" << std::endl;
                         }
                         int replacementIndex = buffer1.calculateCircularIndex();
                         // if (buffer1.array[replacementIndex].second == 'W')
@@ -143,6 +149,9 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                         if (rw == 'R')
                         {
                             diskReads++;
+                            if(strcmp(debugOrQuiet, "debug") == 0){
+                                std::cout<< count <<": Disk Read" << std::endl;
+                            }
                         }
                         if (buffer2.begin()->second == 'W') //new
                         {
