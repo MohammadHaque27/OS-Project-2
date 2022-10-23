@@ -2,7 +2,7 @@
 #include "dataStructures.hpp" 
 
 
-void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
+void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
 {
     int size2 = (nframes * p) / 100;
     int size1 = nframes - size2;
