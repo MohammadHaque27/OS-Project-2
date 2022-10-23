@@ -21,7 +21,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
     CircularArray buffer1(size1);
     std::vector<std::pair<unsigned, char> > buffer2;
     buffer2.reserve(size2);
-    int bufferHits = 0; //what do I need this for again?
+    //int bufferHits = 0; //what do I need this for again?
     int diskReads = 0;
     int diskWrites = 0;
     int count = 0;
@@ -45,15 +45,15 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                 if(strcmp(debugOrQuiet, "debug") == 0){
                     std::cout<<"Buffer1 entry " << i << " is a match" << std::endl;
                 }
-                bufferHits++;
+                //bufferHits++;
                 if ((buffer1.array[i].second != 'W') && (rw == 'W'))
                 {
                     buffer1.array[i].second = rw;
                 }
-                if (rw == 'R')
-                {
-                    diskReads++;
-                }
+                // if (rw == 'R')
+                // {
+                //     diskReads++;
+                // }
                 break;
             }
             else if (buffer1.array[i].first == 0)//If entry not in FIFO table but FIFO table entry is empty
@@ -87,19 +87,19 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                             std::cout<<"Buffer2 entry " << j << " is a match, moving this entry to buffer1" << std::endl;
                         }
                         int replacementIndex = buffer1.calculateCircularIndex();
-                        if (buffer1.array[replacementIndex].second == 'W')
-                        {
-                            diskWrites++;
-                        }
+                        // if (buffer1.array[replacementIndex].second == 'W')
+                        // {
+                        //     diskWrites++;
+                        // }
                         unsigned tempFrame = buffer1.array[replacementIndex].first;
                         char tempRW = buffer1.array[replacementIndex].second;
                         buffer1.array[replacementIndex].first = frameNum; //may need to move buffer1.array[replacementIndex] into buffer2 via a temp variable
                         buffer1.incrementLoopOffset();
                         buffer1.array[replacementIndex].second = rw;
-                        if (rw == 'R')
-                        {
-                            diskReads++;
-                        }
+                        // if (rw == 'R')
+                        // {
+                        //     diskReads++;
+                        // }
                         buffer2.erase(buffer2.begin()+j);
                         std::pair<unsigned, char> elem;
                         elem.first = tempFrame;
@@ -131,10 +131,10 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                             std::cout<<"Buffer2 is full with no matches, adding frame to buffer1 and shifting buffer1 replacement to buffer2" << std::endl;
                         }
                         int replacementIndex = buffer1.calculateCircularIndex();
-                        if (buffer1.array[replacementIndex].second == 'W')
-                        {
-                            diskWrites++;
-                        }
+                        // if (buffer1.array[replacementIndex].second == 'W')
+                        // {
+                        //     diskWrites++;
+                        // }
                         unsigned tempFrame = buffer1.array[replacementIndex].first;
                         char tempRW = buffer1.array[replacementIndex].second;
                         buffer1.array[replacementIndex].first = frameNum;
@@ -143,6 +143,10 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                         if (rw == 'R')
                         {
                             diskReads++;
+                        }
+                        if (buffer2.begin()->second == 'W') //new
+                        {
+                            diskWrites++;
                         }
                         buffer2.erase(buffer2.begin()); //erase least recently used (front vector queue element)
                         std::pair<unsigned, char> elem;
