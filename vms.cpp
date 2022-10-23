@@ -13,7 +13,7 @@ void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
     CircularArray buffer1(size1);
     std::vector<std::pair<unsigned, char> > buffer2;
     buffer2.reserve(size2);
-    int bufferHits = 0;
+    int bufferHits = 0; //what do I need this for again?
     int diskReads = 0;
     int diskWrites = 0;
     int count = 0;
@@ -131,8 +131,11 @@ void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
     }
 
 
+    std::cout << "Total memory frames: " << nframes << std::endl;
+    std::cout << "Events in trace: " << count << std::endl;
+    std::cout << "Total disk reads: " << diskReads << std::endl;
+    std::cout << "Total disk writes: " << diskWrites << std::endl;
 
 
-
-    //fclose(tracefile);
+    fclose(tracefile);
 }
