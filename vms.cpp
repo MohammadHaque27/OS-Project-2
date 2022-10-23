@@ -87,18 +87,24 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                             std::cout<<"Buffer2 entry " << j << " is a match, moving this entry to buffer1" << std::endl;
                         }
                         int replacementIndex = buffer1.calculateCircularIndex();
-                        buffer1.array[replacementIndex].first = frameNum; //may need to move buffer1.array[replacementIndex] into buffer2 via a temp variable
-                        buffer1.incrementLoopOffset();
                         if (buffer1.array[replacementIndex].second == 'W')
                         {
                             diskWrites++;
                         }
+                        unsigned tempFrame = buffer1.array[replacementIndex].first;
+                        char tempRW = buffer1.array[replacementIndex].second;
+                        buffer1.array[replacementIndex].first = frameNum; //may need to move buffer1.array[replacementIndex] into buffer2 via a temp variable
+                        buffer1.incrementLoopOffset();
                         buffer1.array[replacementIndex].second = rw;
                         if (rw == 'R')
                         {
                             diskReads++;
                         }
                         buffer2.erase(buffer2.begin()+j);
+                        std::pair<unsigned, char> elem;
+                        elem.first = tempFrame;
+                        elem.second = tempRW;
+                        buffer2.push_back(elem);
                         break;
                     }
                     else if (buffer2[j].first == 0) //If entry not in LRU and at LRU index is empty
