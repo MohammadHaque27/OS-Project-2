@@ -11,7 +11,7 @@ void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
     //if (size1 == 0)
 
     CircularArray buffer1(size1);
-    std::vector<std::pair<unsigned, char>> buffer2;
+    std::vector<std::pair<unsigned, char> > buffer2;
     buffer2.reserve(size2);
     int bufferHits = 0;
     int diskReads = 0;
@@ -113,7 +113,7 @@ void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet)
                             diskReads++;
                         }
                         buffer2.erase(buffer2.begin()); //erase least recently used (front vector queue element)
-                        std::pair<unsigned, char> elem = <tempFrame, tempRW>;
+                        std::pair<unsigned, char> elem = std::pair<tempFrame, tempRW>;
                         buffer2.push_back(elem);
                         break;
                     }
