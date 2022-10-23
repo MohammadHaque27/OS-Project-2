@@ -98,7 +98,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                         char tempRW = buffer1.array[replacementIndex].second;
                         buffer1.array[replacementIndex].first = frameNum; //may need to move buffer1.array[replacementIndex] into buffer2 via a temp variable
                         buffer1.incrementLoopOffset();
-                        buffer1.array[replacementIndex].second = rw;
+                        buffer1.array[replacementIndex].second = buffer2[j].second;
                         // if (rw == 'R')
                         // {
                         //     diskReads++;
@@ -156,6 +156,9 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                         if (buffer2.begin()->second == 'W') //new
                         {
                             diskWrites++;
+                            if(strcmp(debugOrQuiet, "debug") == 0){
+                                std::cout<< count <<": Disk Write" << std::endl;
+                            }
                         }
                         buffer2.erase(buffer2.begin()); //erase least recently used (front vector queue element)
                         std::pair<unsigned, char> elem;
