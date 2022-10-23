@@ -168,6 +168,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                         std::pair<unsigned, char> elem;
                         elem.first = tempFrame;
                         elem.second = tempRW;
+                        std::cout << elem.first << " & " << elem.second << std::endl;
                         buffer2.push_back(elem);
                         std::cout << "buffer2 elem 0: " << buffer2.begin()->first << "\nbuffer2 elem 1: " << (buffer2.begin()+1)->first << std::endl;
                         break;
@@ -192,4 +193,5 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
     std::cout << "Test before fclose" << std::endl;
     fclose(tracefile);
     std::cout << "Test after fclose" << std::endl;
+    //likely need to call some destructors to remove seg fault at end
 }
