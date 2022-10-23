@@ -4,3 +4,4 @@
 
 void FIFO(int nframes, char* traceName, char *mode);
 void lru(const char* traceName , int frame_Num, std::string option);
+void VMS(const char* traceName, int nframes, int p, char *debugOrQuiet);
