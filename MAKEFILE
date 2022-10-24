@@ -15,3 +15,6 @@ vms.o: vms.cpp dataStructures.cpp policies.hpp dataStructures.hpp
 
 dataStructures.o: dataStructures.cpp dataStructures.hpp
 	g++ -std=c++11 -c dataStructures.cpp
+
+clean:
+	rm memsim memsim.o FIFO.o lru.o vms.o dataStructures.o
