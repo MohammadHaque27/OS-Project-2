@@ -1,20 +1,20 @@
-memsim: memsim.o FIFO.o lru.o vms.o dataStructures.o
+memsim: memsim.o FIFO.o lru.o vms.o
 	g++ -std=c++11 -o memsim memsim.o FIFO.o lru.o vms.o dataStructures.o
 
-memsim.o: memsim.cpp FIFO.cpp lru.cpp vms.cpp dataStructures.cpp policies.hpp dataStructures.hpp
-	g++ -std=c++11 -c memsim.cpp FIFO.cpp lru.cpp vms.cpp dataStructures.cpp 
+memsim.o: memsim.cpp
+	g++ -std=c++11 -c memsim.cpp
 
-FIFO.o: FIFO.cpp dataStructures.cpp policies.hpp dataStructures.hpp
-	g++ -std=c++11 -c FIFO.cpp dataStructures.cpp
+FIFO.o: FIFO.cpp
+	g++ -std=c++11 -c FIFO.cpp
 
-lru.o: lru.cpp dataStructures.cpp policies.hpp dataStructures.hpp
-	g++ -std=c++11 -c lru.cpp dataStructures.cpp
+lru.o: lru.cpp
+	g++ -std=c++11 -c lru.cpp 
 
-vms.o: vms.cpp dataStructures.cpp policies.hpp dataStructures.hpp
-	g++ -std=c++11 -c vms.cpp dataStructures.cpp
+vms.o: vms.cpp
+	g++ -std=c++11 -c vms.cpp
 
-dataStructures.o: dataStructures.cpp dataStructures.hpp
+dataStructures.o: dataStructures.cpp
 	g++ -std=c++11 -c dataStructures.cpp
 
 clean:
-	rm memsim memsim.o FIFO.o lru.o vms.o dataStructures.o
+	rm *.o memsim
