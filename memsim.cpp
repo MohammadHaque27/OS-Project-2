@@ -1,9 +1,9 @@
-//#include <iostream>
-#include <stdio.h>
-#include <iostream>
-#include <string.h> //technically already included in a .hpp file
-// #include "dataStructures.hpp"
+
+// #include <stdio.h>
+// #include <iostream>
+// #include <string.h>
 #include "policies.hpp"
+#include "dataStructures.hpp"
 
 
 int main(int argc, char* argv[]) //memsim <tracefile> <nframes> <lru|fifo|vms> <p> <debug|quiet> 

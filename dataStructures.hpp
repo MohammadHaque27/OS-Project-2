@@ -7,6 +7,8 @@
 #include <map>
 #include <algorithm>
 #include <utility>
+#include <iostream>
+#include <queue>
 
 class CircularArray 
 {
