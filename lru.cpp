@@ -1,4 +1,5 @@
 #include "policies.hpp"
+#include "dataStructures.hpp"
 
 //Function for the LRU Algorithm
 //if the page is not in LRU and the LRU is full
