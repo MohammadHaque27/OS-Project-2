@@ -173,12 +173,11 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                 }
             }
         }
+        std::cout << "Total memory frames: " << nframes << std::endl;
+        std::cout << "Events in trace: " << count << std::endl;
+        std::cout << "Total disk reads: " << diskReads << std::endl;
+        std::cout << "Total disk writes: " << diskWrites << std::endl;
+
+        fclose(tracefile);
     }
-
-    std::cout << "Total memory frames: " << nframes << std::endl;
-    std::cout << "Events in trace: " << count << std::endl;
-    std::cout << "Total disk reads: " << diskReads << std::endl;
-    std::cout << "Total disk writes: " << diskWrites << std::endl;
-
-    fclose(tracefile);
 }
