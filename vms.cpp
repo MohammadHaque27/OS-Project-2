@@ -98,14 +98,17 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                 switch(code) 
                 {
                     case 1: //frame not in LRU table
-                        //diskReads++;
-                        if (rw == 'R')
-                        {
-                            diskReads++;
-                            if(strcmp(debugOrQuiet, "debug") == 0){
+                        diskReads++;
+                        if(strcmp(debugOrQuiet, "debug") == 0){
                                 std::cout<< count <<": Disk Read" << std::endl;
                             }
-                        }
+                        // if (rw == 'R')
+                        // {
+                        //     diskReads++;
+                        //     if(strcmp(debugOrQuiet, "debug") == 0){
+                        //         std::cout<< count <<": Disk Read" << std::endl;
+                        //     }
+                        // }
                         if(mem.size() < size2) //if LRU table not full
                         {
                             if(strcmp(debugOrQuiet, "debug") == 0){
@@ -173,5 +176,4 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
     std::cout << "Total disk writes: " << diskWrites << std::endl;
 
     fclose(tracefile);
-    //likely need to call some destructors to remove seg fault at end
 }
