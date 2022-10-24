@@ -12,7 +12,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
         std::cout<< "size2: " << size2 << std::endl;
     }
     
-    //conditional to just run fifo or lru (figure out percentages)
+    //conditional to just run fifo or lru
     if (size1 <= 1)
     {
         lru(traceName, nframes, debugOrQuiet);
