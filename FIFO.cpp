@@ -5,6 +5,7 @@
 // #include <vector>
 // #include <stdio.h>
 #include "dataStructures.hpp"
+#include "policies.hpp"
 
 
 //Function for FIFO Algorithm 
