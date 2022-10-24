@@ -134,10 +134,6 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                             {
                                 diskWrites++;
                             }
-                            else
-                            {
-                                diskReads++; //unsure
-                            }
                             mem.erase(buffer2.front());
                             buffer2.erase(buffer2.begin());
                             //push replaced buffer1 frame into the back of LRU table (buffer2)
