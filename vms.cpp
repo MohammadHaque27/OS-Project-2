@@ -72,13 +72,14 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                 case 2: //frame not in FIFO table
                     if(dirty1.size() < size1) //if FIFO table not full
                     {
-                        if (rw == 'R')
-                        {
-                            diskReads++;
-                            if(strcmp(debugOrQuiet, "debug") == 0){
-                                std::cout<< count <<": Disk Read" << std::endl;
-                            }
-                        }
+                        diskReads++;
+                        // if (rw == 'R')
+                        // {
+                        //     diskReads++;
+                        //     if(strcmp(debugOrQuiet, "debug") == 0){
+                        //         std::cout<< count <<": Disk Read" << std::endl;
+                        //     }
+                        // }
                         if(strcmp(debugOrQuiet, "debug") == 0){
                             std::cout<< count <<": Buffer1 entry is empty, adding frame to the table" << std::endl;
                         }
@@ -105,13 +106,14 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                         switch(code2) 
                         {
                             case 1: //frame not in LRU table
-                                if (rw == 'R')
-                                {
-                                    diskReads++;
-                                    if(strcmp(debugOrQuiet, "debug") == 0){
-                                        std::cout<< count <<": Disk Read" << std::endl;
-                                    }
-                                }
+                                diskReads++;
+                                // if (rw == 'R')
+                                // {
+                                //     diskReads++;
+                                //     if(strcmp(debugOrQuiet, "debug") == 0){
+                                //         std::cout<< count <<": Disk Read" << std::endl;
+                                //     }
+                                // }
                                 if(dirty2.size() < size2) //if LRU table not full
                                 {
                                     if(strcmp(debugOrQuiet, "debug") == 0){
