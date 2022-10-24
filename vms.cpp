@@ -102,7 +102,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                         if(mem.size() < size2) //if LRU table not full
                         {
                             if(strcmp(debugOrQuiet, "debug") == 0){
-                                std::cout<< count <<": Buffer2 entry " << It << " is empty, adding frame to the table" << std::endl;
+                                std::cout<< count <<": Buffer2 entry is empty, adding frame to the table" << std::endl;
                             }
                             buffer2.push_back(frameNum);
                             mem[frameNum] = rw;
@@ -141,7 +141,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
 
                     case 2: //frame is in LRU table
                         if(strcmp(debugOrQuiet, "debug") == 0){
-                            std::cout<< count <<": Buffer2 entry " << It << " is a match, moving this entry to buffer1" << std::endl;
+                            std::cout<< count <<": Buffer2 entry is a match, moving this entry to buffer1" << std::endl;
                         }
                         int replacementIndex = buffer1.calculateCircularIndex();
                         unsigned tempFrame = buffer1.array[replacementIndex].first;
