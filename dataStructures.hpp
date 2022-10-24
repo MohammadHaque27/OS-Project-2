@@ -22,7 +22,7 @@ public:
 
 private:
     int size; //length of array
-    int loopOffset; // for loopOffset % size
+    unsigned loopOffset; // for loopOffset % size
 };
 
 #endif // D_STRUCTS
