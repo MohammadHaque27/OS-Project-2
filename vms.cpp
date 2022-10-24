@@ -73,13 +73,6 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                     if(dirty1.size() < size1) //if FIFO table not full
                     {
                         diskReads++;
-                        // if (rw == 'R')
-                        // {
-                        //     diskReads++;
-                        //     if(strcmp(debugOrQuiet, "debug") == 0){
-                        //         std::cout<< count <<": Disk Read" << std::endl;
-                        //     }
-                        // }
                         if(strcmp(debugOrQuiet, "debug") == 0){
                             std::cout<< count <<": Buffer1 entry is empty, adding frame to the table" << std::endl;
                         }
@@ -107,13 +100,6 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                         {
                             case 1: //frame not in LRU table
                                 diskReads++;
-                                // if (rw == 'R')
-                                // {
-                                //     diskReads++;
-                                //     if(strcmp(debugOrQuiet, "debug") == 0){
-                                //         std::cout<< count <<": Disk Read" << std::endl;
-                                //     }
-                                // }
                                 if(dirty2.size() < size2) //if LRU table not full
                                 {
                                     if(strcmp(debugOrQuiet, "debug") == 0){
