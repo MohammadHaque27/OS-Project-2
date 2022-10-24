@@ -1,5 +1,4 @@
 #include "policies.hpp"
-#include "dataStructures.hpp" 
 
 
 void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)

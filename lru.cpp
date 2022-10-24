@@ -1,12 +1,4 @@
 #include "policies.hpp"
-#include "dataStructures.hpp"
-// #include <iostream>
-// #include <map>
-// #include <algorithm>
-// #include <string.h>
-// #include <vector>
-// #include <stdlib.h>
-// #include <queue>
 
 //Function for the LRU Algorithm
 //if the page is not in LRU and the LRU is full
