@@ -1,4 +1,17 @@
+memsim: memsim.o FIFO.o lru.o vms.o dataStructures.o
+	g++ -std=c++11 -o memsim memsim.o FIFO.o lru.o vms.o dataStructures.o
 
-CFLAGS=-Wall
-all:
-	g++	-o	memsim	memsim.c	fifo.c	lru.c	vms.c	dataStructures.c
+memsim.o: memsim.cpp FIFO.cpp lru.cpp vms.cpp dataStructures.cpp
+	g++ -std=c++11 -c memsim.cpp FIFO.cpp lru.cpp vms.cpp dataStructures.cpp policies.hpp dataStructures.hpp
+
+FIFO.o: dataStructures.cpp policies.hpp dataStructures.hpp
+	g++ -std=c++11 -c FIFO.cpp dataStructures.cpp
+
+lru.o: dataStructures.cpp policies.hpp dataStructures.hpp
+	g++ -std=c++11 -c lru.cpp dataStructures.cpp
+
+vms.o: dataStructures.cpp policies.hpp dataStructures.hpp
+	g++ -std=c++11 -c vms.cpp dataStructures.cpp
+
+dataStructures.o: dataStructures.cpp dataStructures.hpp
+	g++ -std=c++11 -c dataStructures.cpp
