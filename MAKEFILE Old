@@ -1,4 +1,0 @@
-
-CFLAGS=-Wall
-all:
-	g++	-o	memsim	memsim.c	fifo.c	lru.c	vms.c	dataStructures.c
