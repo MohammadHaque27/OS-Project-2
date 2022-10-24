@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <map>
 #include <utility>
 
 class CircularArray 

@@ -84,6 +84,7 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                 if(strcmp(debugOrQuiet, "debug") == 0){
                     std::cout<< count <<": Buffer1 is full with no matches, begin searching buffer2" << std::endl;
                 }
+                int code;
                 It = find(buffer2.begin(), buffer2.end(), frameNum); //Look for a frameNum match
                 if(It == buffer2.end()) //set switch code for frame not in LRU table
                 {
