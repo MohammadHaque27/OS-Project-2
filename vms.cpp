@@ -98,17 +98,17 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                 switch(code) 
                 {
                     case 1: //frame not in LRU table
-                        diskReads++;
-                        if(strcmp(debugOrQuiet, "debug") == 0){
-                                std::cout<< count <<": Disk Read" << std::endl;
-                            }
-                        // if (rw == 'R')
-                        // {
-                        //     diskReads++;
-                        //     if(strcmp(debugOrQuiet, "debug") == 0){
+                        // diskReads++;
+                        // if(strcmp(debugOrQuiet, "debug") == 0){
                         //         std::cout<< count <<": Disk Read" << std::endl;
                         //     }
-                        // }
+                        if (rw == 'R')
+                        {
+                            diskReads++;
+                            if(strcmp(debugOrQuiet, "debug") == 0){
+                                std::cout<< count <<": Disk Read" << std::endl;
+                            }
+                        }
                         if(mem.size() < size2) //if LRU table not full
                         {
                             if(strcmp(debugOrQuiet, "debug") == 0){
@@ -133,6 +133,10 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                             if(mem[buffer2.front()] == 'W')
                             {
                                 diskWrites++;
+                            }
+                            else
+                            {
+                                diskReads++; //unsure
                             }
                             mem.erase(buffer2.front());
                             buffer2.erase(buffer2.begin());
