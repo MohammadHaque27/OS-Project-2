@@ -1,7 +1,7 @@
 memsim: memsim.o FIFO.o lru.o vms.o dataStructures.o
 	g++ -o memsim memsim.o FIFO.o lru.o vms.o dataStructures.o
 
-memsim.o: memsim.cpp  policies.hpp dataStructures.hpp
+memsim.o: memsim.cpp policies.hpp dataStructures.hpp
 	g++ -std=c++11 -c memsim.cpp
 
 FIFO.o: FIFO.cpp policies.hpp dataStructures.hpp
