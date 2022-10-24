@@ -172,8 +172,6 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
     std::cout << "Total disk reads: " << diskReads << std::endl;
     std::cout << "Total disk writes: " << diskWrites << std::endl;
 
-    std::cout << "Test before fclose" << std::endl;
     fclose(tracefile);
-    std::cout << "Test after fclose" << std::endl;
     //likely need to call some destructors to remove seg fault at end
 }
