@@ -172,51 +172,6 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
                         break;
                     }    
             }
-            
-            
-            for (int i = 0; i < size1; i++) 
-            {
-                if (frameNum == buffer1.array[i].first) //If entry is in FIFO table
-                {
-                    if(strcmp(debugOrQuiet, "debug") == 0){
-                        std::cout<< count <<": Buffer1 entry " << i << " is a match" << std::endl;
-                    }
-                    //bufferHits++;
-                    if ((buffer1.array[i].second != 'W') && (rw == 'W'))
-                    {
-                        buffer1.array[i].second = rw;
-                    }
-                    // if (rw == 'R')
-                    // {
-                    //     diskReads++;
-                    // }
-                    break;
-                }
-                else if (buffer1.array[i].first == 0)//If entry not in FIFO table but FIFO table entry is empty
-                {
-                    if(strcmp(debugOrQuiet, "debug") == 0){
-                        std::cout<< count <<": Buffer1 entry " << i << " is empty, adding frame to the table" << std::endl;
-                    }
-                    buffer1.array[i].first = frameNum;
-                    buffer1.array[i].second = rw;
-                    if (rw == 'R')
-                    {
-                        diskReads++;
-                        if(strcmp(debugOrQuiet, "debug") == 0){
-                            std::cout<< count <<": Disk Read" << std::endl;
-                        }
-                    }
-                    break;
-                }
-                else if (i < (size1-1)) //Table not full
-                {
-                    continue;
-                }
-                else //If entry is not in FIFO table and FIFO is full...
-                {
-                    
-                }
-            }
         }
         std::cout << "Total memory frames: " << nframes << std::endl;
         std::cout << "Events in trace: " << count << std::endl;
