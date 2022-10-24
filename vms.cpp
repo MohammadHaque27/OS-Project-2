@@ -7,6 +7,11 @@ void VMS(char* traceName, int nframes, int p, char *debugOrQuiet)
     int size2 = (nframes * p) / 100;
     int size1 = nframes - size2;
 
+    if(strcmp(debugOrQuiet, "debug") == 0){
+        std::cout<< "size1: " << size1 << std::endl;
+        std::cout<< "size2: " << size2 << std::endl;
+    }
+    
     //conditional to just run fifo or lru (figure out percentages)
     if (size1 == 0)
     {
