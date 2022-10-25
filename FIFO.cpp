@@ -48,13 +48,14 @@ void FIFO(int nframes, char* traceName, char *debugOrQuiet){
                 }
                 
                 reads++;
-                replacementIndex = offset % nframes;
 
                 if (dirty[frameNum] == 'W') {
                     writes++;
                 }
 
-                pgtble[replacementIndex] = frameNum;
+                pgtble.erase(pgtble.begin());
+                dirty.erase(frameNum);
+                pgtble.push_back(frameNum);
                 dirty[frameNum] = rw;
                 replacementIndex++;
                 
