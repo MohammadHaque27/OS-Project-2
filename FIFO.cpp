@@ -49,7 +49,7 @@ void FIFO(int nframes, char* traceName, char *debugOrQuiet){
                 
                 reads++;
 
-                if (dirty[frameNum] == 'W') {
+                if (dirty[pgtble.front()] == 'W') {
                     writes++;
                 }
 
